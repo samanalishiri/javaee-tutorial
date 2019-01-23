@@ -10,14 +10,6 @@ import javax.persistence.PersistenceUnit;
 import javax.transaction.Transactional;
 
 @Stateless
-public class UserRepository implements IUserRepository {
+public class UserRepository extends AbstractRepository<Long, UserEntity> implements IUserRepository {
 
-    @PersistenceContext(unitName = "javaeetutorial")
-    private EntityManager em;
-
-
-    @Override
-    public UserEntity findById(Integer id) {
-        return null;
-    }
 }

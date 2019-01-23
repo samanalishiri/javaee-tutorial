@@ -5,7 +5,6 @@ import com.saman.tutorial.javaee.ejb.domain.UserEntity;
 import javax.ejb.Local;
 
 @Local
-public interface IUserRepository {
+public interface IUserRepository extends CrudRepository<Long, UserEntity> {
 
-    UserEntity findById(Integer id);
 }
