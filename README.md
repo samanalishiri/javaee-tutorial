@@ -3,6 +3,7 @@
 - Java 8
 - maven 3
 - glassfish 5.0
+- mysql 8
 
 ## Setup
 
