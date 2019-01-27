@@ -1,13 +1,6 @@
 package com.saman.tutorial.javaee.ejb.service;
 
-import com.saman.tutorial.javaee.ejb.repository.IUserRepository;
+import com.saman.tutorial.javaee.ejb.domain.UserEntity;
 
-import javax.ejb.EJB;
-import javax.ejb.Stateless;
-
-@Stateless
-public class UserService implements IUserService {
-
-    @EJB
-    private IUserRepository repository;
+public interface UserService extends CrudService<Integer, UserEntity, UserModel> {
 }
