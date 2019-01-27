@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.saman.tutorial.javaee</groupId>
-    <artifactId>javaee-tutorial</artifactId>
+    <artifactId>step_001_simple_crud</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>javaee-tutorial</name>
+    <name>EJB Simple CRUD</name>
 
     <modules>
         <module>module-ejb</module>
@@ -82,15 +82,15 @@
 
                 <plugin>
                     <artifactId>maven-ejb-plugin</artifactId>
-                    <version>2.5.1</version>
+                    <version>3.0.1</version>
                     <configuration>
-                        <ejbVersion>3.1</ejbVersion>
+                        <ejbVersion>3.2</ejbVersion>
                     </configuration>
                 </plugin>
 
                 <plugin>
                     <artifactId>maven-war-plugin</artifactId>
-                    <version>2.6</version>
+                    <version>3.2.2</version>
                     <configuration>
                         <failOnMissingWebXml>false</failOnMissingWebXml>
                     </configuration>
