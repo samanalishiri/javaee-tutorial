@@ -1,4 +1,4 @@
-package com.saman.tutorial.javaee.ejb.service;
+package com.saman.tutorial.javaee.ejb.service.user;
 
 import com.saman.tutorial.javaee.ejb.domain.UserEntity;
 

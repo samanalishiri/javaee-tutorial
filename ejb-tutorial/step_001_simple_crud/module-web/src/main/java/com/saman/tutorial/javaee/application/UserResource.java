@@ -1,7 +1,7 @@
-package com.saman.tutorial.javaee.web;
+package com.saman.tutorial.javaee.application;
 
-import com.saman.tutorial.javaee.ejb.service.UserModel;
-import com.saman.tutorial.javaee.ejb.service.UserService;
+import com.saman.tutorial.javaee.ejb.service.user.UserModel;
+import com.saman.tutorial.javaee.ejb.service.user.UserService;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;

@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.saman.tutorial.javaee.web</groupId>
+    <groupId>com.saman.tutorial.javaee.application</groupId>
     <artifactId>module-web</artifactId>
     <packaging>war</packaging>
 

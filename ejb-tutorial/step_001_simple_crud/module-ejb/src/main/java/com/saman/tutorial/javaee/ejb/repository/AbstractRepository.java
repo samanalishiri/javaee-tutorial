@@ -1,14 +1,17 @@
 package com.saman.tutorial.javaee.ejb.repository;
 
+import com.saman.tutorial.javaee.ejb.repository.CrudRepository;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import java.lang.reflect.ParameterizedType;
+import javax.transaction.Transactional;
 import java.util.List;
 
+import static com.saman.tutorial.javaee.ejb.helper.CriteriaUtils.createCriteriaQuery;
 import static com.saman.tutorial.javaee.ejb.helper.GenericUtils.getActualTypeArgument;
 
+@Transactional(Transactional.TxType.REQUIRED)
 public abstract class AbstractRepository<ID, E> implements CrudRepository<ID, E> {
 
     private static final int GENERIC_ENTITY_INDEX = 1;
@@ -22,7 +25,6 @@ public abstract class AbstractRepository<ID, E> implements CrudRepository<ID, E>
         this.entity = getActualTypeArgument(getClass(), GENERIC_ENTITY_INDEX);
     }
 
-
     @Override
     public E findById(ID id) {
         return em.find(entity, id);
@@ -30,12 +32,8 @@ public abstract class AbstractRepository<ID, E> implements CrudRepository<ID, E>
 
     @Override
     public List<E> findAll() {
-        CriteriaQuery<E> criteriaQuery = createCriteriaQuery();
+        CriteriaQuery<E> criteriaQuery = createCriteriaQuery(em, entity);
         return em.createQuery(criteriaQuery.select(criteriaQuery.from(entity))).getResultList();
     }
 
-    protected CriteriaQuery<E> createCriteriaQuery() {
-        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-        return criteriaBuilder.createQuery(entity);
-    }
 }

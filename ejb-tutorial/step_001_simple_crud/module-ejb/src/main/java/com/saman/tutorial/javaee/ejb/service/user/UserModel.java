@@ -1,4 +1,6 @@
-package com.saman.tutorial.javaee.ejb.service;
+package com.saman.tutorial.javaee.ejb.service.user;
+
+import com.saman.tutorial.javaee.ejb.service.model.AbstractModel;
 
 public class UserModel extends AbstractModel<Integer> {
 
@@ -6,7 +8,7 @@ public class UserModel extends AbstractModel<Integer> {
 
     private String username;
 
-    private String passwd;
+    private String password;
 
     private String email;
 
@@ -28,12 +30,12 @@ public class UserModel extends AbstractModel<Integer> {
         this.username = username;
     }
 
-    public String getPasswd() {
-        return passwd;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasswd(String passwd) {
-        this.passwd = passwd;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getEmail() {

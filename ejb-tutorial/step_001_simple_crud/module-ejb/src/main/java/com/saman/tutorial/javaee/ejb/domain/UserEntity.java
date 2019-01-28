@@ -17,7 +17,7 @@ public class UserEntity extends AbstractEntity<Integer> {
     private String username;
 
     @Column(name = "passwd")
-    private String passwd;
+    private String password;
 
     @Column(name = "email")
     private String email;
@@ -40,12 +40,12 @@ public class UserEntity extends AbstractEntity<Integer> {
         this.username = username;
     }
 
-    public String getPasswd() {
-        return passwd;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasswd(String passwd) {
-        this.passwd = passwd;
+    public void setPassword(String passwd) {
+        this.password = passwd;
     }
 
     public String getEmail() {

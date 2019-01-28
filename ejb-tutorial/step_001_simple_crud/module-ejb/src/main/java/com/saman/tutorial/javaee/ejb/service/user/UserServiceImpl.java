@@ -1,6 +1,6 @@
-package com.saman.tutorial.javaee.ejb.service;
+package com.saman.tutorial.javaee.ejb.service.user;
 
-import com.saman.tutorial.javaee.ejb.repository.UserRepository;
+import com.saman.tutorial.javaee.ejb.repository.user.UserRepository;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
