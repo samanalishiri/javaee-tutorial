@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE resources PUBLIC
+        "-//GlassFish.org//DTD GlassFish Application Server 3.1 Resource Definitions//EN"
+        "http://glassfish.org/dtds/glassfish-resources_1_5.dtd">
+<resources>
+    <!--<jdbc-resource pool-name="ArquillianEmbeddedDerbyPool"-->
+    <!--jndi-name="jdbc/javaeetutorial"/>-->
+    <!--<jdbc-connection-pool name="ArquillianEmbeddedDerbyPool"-->
+    <!--res-type="javax.sql.DataSource"-->
+    <!--datasource-classname="org.apache.derby.jdbc.EmbeddedDataSource"-->
+    <!--is-isolation-level-guaranteed="false">-->
+    <!--<property name="databaseName" value="target/databases/derby"/>-->
+    <!--<property name="createDatabase" value="create"/>-->
+    <!--</jdbc-connection-pool>-->
+
+
+    <jdbc-resource pool-name="ArquillianEmbeddedMySQLPool"
+                   jndi-name="jdbc/javaeetutorial"/>
+    <jdbc-connection-pool name="ArquillianEmbeddedMySQLPool"
+                          res-type="javax.sql.DataSource"
+                          datasource-classname="com.mysql.cj.jdbc.MysqlConnectionPoolDataSource">
+        <property name="user" value="root"/>
+        <property name="password" value="root"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/javaeetutorial"/>
+    </jdbc-connection-pool>
+</resources>

@@ -56,4 +56,12 @@ public class UserEntity extends AbstractEntity<Integer> {
         this.email = email;
     }
 
+    @Override
+    public String toString() {
+        return "UserEntity{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }

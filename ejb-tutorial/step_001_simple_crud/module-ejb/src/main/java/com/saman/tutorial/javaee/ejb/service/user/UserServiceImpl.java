@@ -13,12 +13,22 @@ public class UserServiceImpl implements UserService {
     private UserRepository repository;
 
     @Override
+    public Integer save(UserModel m) {
+        return repository.save(UserConverter.covert(m));
+    }
+
+    @Override
     public UserModel findById(Integer id) {
         return UserConverter.covert(repository.findById(id));
     }
 
     @Override
     public List<UserModel> findAll() {
-        return UserConverter.covert(repository.findAll());
+        return UserConverter.covertEntities(repository.findAll());
+    }
+
+    @Override
+    public void delete(Integer id) {
+        repository.delete(id);
     }
 }
