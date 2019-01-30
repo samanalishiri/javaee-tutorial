@@ -37,6 +37,7 @@ public class RepositoryTest {
     public void init() throws Exception {
 
         UserEntity entity = new UserEntity();
+        entity.setId(1);
         entity.setUsername("samanalishiri");
         entity.setEmail("samanalishiri@gmail.com");
         entity.setPassword("123");
