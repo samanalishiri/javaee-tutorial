@@ -10,7 +10,6 @@ import javax.json.JsonArray;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 import java.util.logging.Logger;
@@ -19,9 +18,11 @@ import java.util.stream.Collectors;
 
 public class ConsumingRestTest {
 
-    public static final Logger LOGGER = Logger.getLogger("ConsumingRestTest");
+    private final Logger logger = Logger.getLogger("ConsumingRestTest");
 
-    private static String baseUrl = "http://localhost:8080/resources/";
+    private final String baseUrl = "http://localhost:8080/resources/";
+
+    private final UserModel.Builder userBuilder = UserModel.newBuilder();
 
     private Client client;
 
@@ -30,15 +31,16 @@ public class ConsumingRestTest {
         client = ClientBuilder.newClient();
     }
 
-    private void init() {
-        UserModel.Builder userBuilder = UserModel.newBuilder();
+    @After
+    public void teardown() {
+        client.close();
+    }
 
-        postModel(userBuilder.id(1).username("admin").email("admin@gmail.com").password("123").build(),
-                "user/save");
-        postModel(userBuilder.id(2).username("user").email("user@gmail.com").password("123").build(),
-                "user/save");
-        postModel(userBuilder.id(3).username("guest").email("guest@gmail.com").password("123").build(),
-                "user/save");
+    private void init() {
+
+        postModel("user/save", userBuilder.id(1).username("admin").email("admin@gmail.com").password("123").build()).close();
+        postModel("user/save", userBuilder.id(2).username("user").email("user@gmail.com").password("123").build()).close();
+        postModel("user/save", userBuilder.id(3).username("guest").email("guest@gmail.com").password("123").build()).close();
     }
 
     private void truncate() {
@@ -53,18 +55,16 @@ public class ConsumingRestTest {
 
         Response response = getRequest("user/find/all");
         if (response.hasEntity()) {
-            JsonArray jsonArray = response.readEntity(JsonArray.class);
-            List<UserModel> users = jsonArray.stream().map(UserConverter::covert).collect(Collectors.toList());
-            LOGGER.info(String.join("\n", users.stream().map(UserModel::toString).collect(Collectors.toList())));
+            List<String> userModelsAsString = UserConverter.covert(response.readEntity(JsonArray.class))
+                    .stream()
+                    .map(UserModel::toString)
+                    .collect(Collectors.toList());
+
+            logger.info(String.join("\n", userModelsAsString));
         }
         response.close();
 
         truncate();
-    }
-
-    @After
-    public void teardown() {
-        client.close();
     }
 
     private Response getRequest(String url) {
@@ -76,14 +76,12 @@ public class ConsumingRestTest {
                 .invoke();
     }
 
-    private void postModel(UserModel model, String url) {
-        Response response = client.target(baseUrl + url)
-                .request(MediaType.APPLICATION_JSON_TYPE)
+    private Response postModel(String url, UserModel model) {
+        return client.target(baseUrl + url)
+                .request()
                 .property("Accept", "application/json")
                 .property("Content-type", "application/json")
                 .buildPost(Entity.json(model))
                 .invoke();
-
-        response.close();
     }
 }
