@@ -41,7 +41,7 @@ public class RepositoryTest {
     }
 
     @Test
-    public void findAllUserTest() {
+    public void findByUserIdTest() {
         init();
 
         UserModel user = userRepository.findById(1);
